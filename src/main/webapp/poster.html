@@ -1,0 +1,66 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/underscore.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/mystyle.css"/>
+    <title></title>
+</head>
+<body>
+<div ng-controller="blogCtrl">
+    <div class="container">
+        <h1>Total Blog posts: {{totalBlogPosts}}</h1>
+
+        <ul class="unstyled">
+            <li ng-repeat="post in blogPosts">
+                <input class="checkbox" type="checkbox" ng-model="post.isSelected" ng-model-instant>
+                <span>
+                    <i ng-class="post.cool == true && 'icon-heart' || ''"/>
+                    {{post.name}} :
+                    <span class="postContent">"{{post.content}}" </span>
+                </span>
+            </li>
+        </ul>
+        <button class="btn" ng-click="remove()"><i class="icon-trash"></i> Remove</button>
+
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Add new Post</legend>
+
+                <div class="control-group {{nameError}}">
+                    <label class="control-label" for="name"> Name </label>
+
+                    <div class="controls">
+                        <input type="text" ng-model="name" ng-model-instant id="name"/>
+                    </div>
+                </div>
+                <div class="control-group {{contentError}}">
+                    <label class="control-label" for="content"> Content </label>
+
+                    <div class="controls">
+                        <textarea class="input-xlarge " id="content" ng-model="content" ng-model-instant></textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="cool">is it Cool?</label>
+
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input type="checkbox" id="cool" ng-model="cool" ng-model-instant>
+                            Really!
+                        </label>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" ng-click="addPost()"><i class="icon-plus"></i> Add
+                    </button>
+                    <button class="btn">Cancel</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+</body>
+</html>

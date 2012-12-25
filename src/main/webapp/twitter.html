@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="Twitter">
+<head>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/twitter.js"></script>
+    <script type="text/javascript" src="js/angular-resource.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <title>Twitter Search</title>
+</head>
+<body>
+<div class="container" ng-controller="twitterCtrl">
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>Twitter Search</legend>
+            <div class="control-group">
+                <label for="query" class="control-label">Enter some random stuff</label>
+
+                <div class="controls">
+                    <input type="text" id="query" ng-model="query"/>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary " ng-click="search()"><i class="icon-search"></i> Search </button>
+                <button type="button" class="btn btn-danger" ng-click="clear()"><i class="icon-trash"></i> Clear</button>
+            </div>
+        </fieldset>
+    </form>
+    <div id="results">
+        <table class="table">
+            <tr ng-repeat="tweet in twitterResult.results">
+                <td><img ng-src="{{tweet.profile_image_url}}" class="img-rounded"/></td>
+                <td>{{tweet.from_user_name}}</td>
+                <td>{{tweet.text}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
